@@ -1,19 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TaxaJuros.Constantes;
+using Microsoft.Extensions.Configuration;
 
 namespace TaxaJuros.Controllers
 {
     [ApiController]
     public class TaxaJurosController : ControllerBase
     {
-        public TaxaJurosController()
+        private readonly IConfiguration _configuration;
+
+        public TaxaJurosController(IConfiguration configuration)
         {
+            _configuration = configuration;
         }
 
         [HttpGet("taxaJuros")]
         public ActionResult<double> BuscarTaxaJuros()
         {
-            return Constante.TAXA_DE_JUROS;
+            return _configuration.GetSection("TaxaJuros").Get<double>();
         }
     }
 }
