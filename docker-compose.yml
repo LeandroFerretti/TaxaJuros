@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  taxajuros:
+    image: ${DOCKER_REGISTRY-}taxajuros
+    build:
+      context: .
+      dockerfile: TaxaJuros/Dockerfile
